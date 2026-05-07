@@ -2,16 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Presentation</title>
+    <title>Presentation</title>
     <style>
-        /* This ensures the presentation fills the entire browser window */
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        .canva-embed { width: 100vw; height: 100vh; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; background: #000; overflow: hidden; }
+        
+        /* The Start Button Overlay */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #111; color: white; display: flex; 
+            align-items: center; justify-content: center;
+            cursor: pointer; z-index: 100; font-family: sans-serif;
+        }
+
+        #presentation-container { width: 100vw; height: 100vh; display: none; }
+        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-    <div class="canva-embed">
+
+    <div id="overlay">
+        <h1>Click anywhere to start in Full Screen</h1>
+    </div>
+
+    <div id="presentation-container">
+        <!-- REPLACE THE IFRAME BELOW WITH YOUR CANVA EMBED CODE -->
         <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
  border-radius: 8px; will-change: transform;">
@@ -21,5 +35,23 @@
 </div>
 <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHI3fmGvac&#x2F;Q8aQ7NJ1c_I1f95wkNScVA&#x2F;view?utm_content=DAHI3fmGvac&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">India's First AI-Based Home Healthcare Platform</a> by Deepish S Naidu
     </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const container = document.getElementById('presentation-container');
+
+        overlay.addEventListener('click', () => {
+            // Trigger Fullscreen
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+                document.documentElement.webkitRequestFullscreen();
+            }
+
+            // Hide overlay and show presentation
+            overlay.style.display = 'none';
+            container.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
